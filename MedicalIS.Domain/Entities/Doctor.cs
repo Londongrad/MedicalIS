@@ -15,11 +15,16 @@ namespace MedicalIS.Domain.Entities
 
         #region [ Ctors ]
 
-        protected Doctor() { } // EF Core
+        private Doctor() { } // EF Core
 
         public Doctor(Guid id, string fullName, string phoneNumber, Specialty scpecialty)
             :base(id)
         {
+            GuardHelper.AgainstEmptyGuid(id, nameof(id));
+            GuardHelper.AgainstNullOrEmpty(fullName, nameof(fullName));
+            GuardHelper.AgainstNullOrEmpty(phoneNumber, nameof(phoneNumber));
+            GuardHelper.AgainstInvalidEnum(scpecialty, nameof(scpecialty));
+
             FullName = fullName;
             PhoneNumber = phoneNumber;
             Specialty = scpecialty;

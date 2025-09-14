@@ -16,11 +16,14 @@ namespace MedicalIS.Domain.Entities
 
         #region [ Ctors ]
 
-        protected Disease() { } // EF Core
+        private Disease() { } // EF Core
 
         public Disease(Guid id, string name, string? description = null)
             : base(id)
         {
+            GuardHelper.AgainstEmptyGuid(id, nameof(id));
+            GuardHelper.AgainstNullOrEmpty(name, nameof(name));
+
             Name = name;
             Description = description;
         }

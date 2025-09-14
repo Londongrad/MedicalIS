@@ -1,4 +1,5 @@
 ﻿using MedicalIS.Domain.Common;
+using MedicalIS.Domain.Enums;
 
 namespace MedicalIS.Domain.Entities
 {
@@ -9,7 +10,9 @@ namespace MedicalIS.Domain.Entities
         public string FullName { get; private set; } = null!;
         public DateTime DateOfBirth { get; private set; }
         public string PhoneNumber { get; private set; } = null!;
-        public string Gender { get; private set; } = null!;
+        public Gender Gender { get; private set; }
+
+        /// <summary>Адрес можно было бы сделать отдельным классом. Оставил для простоты.</summary>
         public string Address { get; private set; } = null!;
         public Guid DoctorId { get; private set; }
 
@@ -23,11 +26,19 @@ namespace MedicalIS.Domain.Entities
 
         #region [ Ctors ]
 
-        protected Patient() { } // EF Core
+        private Patient() { } // EF Core
 
-        public Patient(Guid id, string fullName, DateTime dateOfBirth, string phone)
+        public Patient(Guid id, string fullName, DateTime dateOfBirth, string phone, Gender gender, string address, Guid doctorId)
             : base(id)
         {
+            GuardHelper.AgainstEmptyGuid(id, nameof(id));
+            GuardHelper.AgainstNullOrEmpty(fullName, nameof(fullName));
+            GuardHelper.AgainstInvalidDate(dateOfBirth, nameof(dateOfBirth));
+            GuardHelper.AgainstNullOrEmpty(phone, nameof(phone));
+            GuardHelper.AgainstInvalidEnum(gender, nameof(gender));
+            GuardHelper.AgainstNullOrEmpty(address, nameof(address));
+            GuardHelper.AgainstEmptyGuid(doctorId, nameof(doctorId));
+
             FullName = fullName;
             DateOfBirth = dateOfBirth;
             PhoneNumber = phone;
