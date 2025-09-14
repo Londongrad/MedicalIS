@@ -1,6 +1,4 @@
-﻿using MedicalIS.Domain.Enums;
-
-namespace MedicalIS.Domain.Common
+﻿namespace MedicalIS.Domain.Common
 {
     public static class GuardHelper
     {
@@ -18,7 +16,6 @@ namespace MedicalIS.Domain.Common
             if (!allowFuture && value > DateTime.UtcNow)
                 throw new ArgumentException($"{argumentName} cannot be in the future", argumentName);
 
-            // Дополнительно можно ограничить "нереально древние" даты
             if (value < new DateTime(1900, 1, 1))
                 throw new ArgumentException($"{argumentName} is too far in the past", argumentName);
         }
