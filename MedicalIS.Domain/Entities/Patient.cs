@@ -8,7 +8,7 @@ namespace MedicalIS.Domain.Entities
         #region [ Properties ]
 
         public string FullName { get; private set; } = null!;
-        public DateTime DateOfBirth { get; private set; }
+        public DateOnly DateOfBirth { get; private set; }
         public string PhoneNumber { get; private set; } = null!;
         public Gender Gender { get; private set; }
 
@@ -28,12 +28,12 @@ namespace MedicalIS.Domain.Entities
 
         private Patient() { } // EF Core
 
-        public Patient(Guid id, string fullName, DateTime dateOfBirth, string phone, Gender gender, string address)
+        public Patient(Guid id, string fullName, DateOnly dateOfBirth, string phone, Gender gender, string address)
             : base(id)
         {
             GuardHelper.AgainstEmptyGuid(id, nameof(id));
             GuardHelper.AgainstNullOrEmpty(fullName, nameof(fullName));
-            GuardHelper.AgainstInvalidDate(dateOfBirth, nameof(dateOfBirth));
+            GuardHelper.AgainstInvalidDate(dateOfBirth.ToDateTime(TimeOnly.MinValue), nameof(dateOfBirth));
             GuardHelper.AgainstNullOrEmpty(phone, nameof(phone));
             GuardHelper.AgainstInvalidEnum(gender, nameof(gender));
             GuardHelper.AgainstNullOrEmpty(address, nameof(address));

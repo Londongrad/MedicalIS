@@ -38,27 +38,27 @@ namespace MedicalIS.Infrastructure
             if (!db.Patients.Any())
             {
                 db.Patients.AddRange(
-                    new Patient(Guid.NewGuid(), "Ivan", new DateTime(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "999-112", Gender.Male, "Moscow"),
+                    new Patient(Guid.NewGuid(), "Ivan", new DateOnly(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "999-112", Gender.Male, "Moscow"),
 
-                    new Patient(Guid.NewGuid(), "Larisa", new DateTime(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "111-13462", Gender.Female, "New York"),
+                    new Patient(Guid.NewGuid(), "Larisa", new DateOnly(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "111-13462", Gender.Female, "New York"),
 
-                    new Patient(Guid.NewGuid(), "James", new DateTime(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "94599-1162", Gender.Male, "London"),
+                    new Patient(Guid.NewGuid(), "James", new DateOnly(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "94599-1162", Gender.Male, "London"),
 
-                    new Patient(Guid.NewGuid(), "Michael", new DateTime(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "94399-11762", Gender.Male, "Paris"),
+                    new Patient(Guid.NewGuid(), "Michael", new DateOnly(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "94399-11762", Gender.Male, "Paris"),
 
-                    new Patient(Guid.NewGuid(), "Mary", new DateTime(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "99349-112754", Gender.Female, "Berlin"),
+                    new Patient(Guid.NewGuid(), "Mary", new DateOnly(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "99349-112754", Gender.Female, "Berlin"),
 
-                    new Patient(Guid.NewGuid(), "William", new DateTime(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "99229-112", Gender.Male, "Madrid"),
+                    new Patient(Guid.NewGuid(), "William", new DateOnly(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "99229-112", Gender.Male, "Madrid"),
 
-                    new Patient(Guid.NewGuid(), "Barbara", new DateTime(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "934699-152312", Gender.Female, "Tokyo"),
+                    new Patient(Guid.NewGuid(), "Barbara", new DateOnly(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "934699-152312", Gender.Female, "Tokyo"),
 
-                    new Patient(Guid.NewGuid(), "John", new DateTime(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "94699-112352", Gender.Male, "Rome"),
+                    new Patient(Guid.NewGuid(), "John", new DateOnly(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "94699-112352", Gender.Male, "Rome"),
 
-                    new Patient(Guid.NewGuid(), "Jessica", new DateTime(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "92599-112532", Gender.Female, "Toronto"),
+                    new Patient(Guid.NewGuid(), "Jessica", new DateOnly(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "92599-112532", Gender.Female, "Toronto"),
 
-                    new Patient(Guid.NewGuid(), "Sarah", new DateTime(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "95399-235112", Gender.Female, "Sydney"),
+                    new Patient(Guid.NewGuid(), "Sarah", new DateOnly(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "95399-235112", Gender.Female, "Sydney"),
 
-                    new Patient(Guid.NewGuid(), "Emily", new DateTime(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "92599-12512", Gender.Female, "Dubai")
+                    new Patient(Guid.NewGuid(), "Emily", new DateOnly(random.Next(1920, 2010), random.Next(1, 12), random.Next(1, 28)), "92599-12512", Gender.Female, "Dubai")
                 );
             }
 

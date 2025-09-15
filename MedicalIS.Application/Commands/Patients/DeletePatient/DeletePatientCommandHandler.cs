@@ -1,7 +1,5 @@
 ﻿using MediatR;
-using MedicalIS.Application.Exceptions;
 using MedicalIS.Application.Interfaces;
-using MedicalIS.Domain.Entities;
 
 namespace MedicalIS.Application.Commands.Patients.DeletePatient
 {
@@ -12,7 +10,7 @@ namespace MedicalIS.Application.Commands.Patients.DeletePatient
 
         public async Task<Unit> Handle(DeletePatientCommand request, CancellationToken cancellationToken)
         {
-            var patient = await _repository.GetByIdAsync(request.Id, cancellationToken) ?? throw new NotFoundException(nameof(Patient), request.Id);
+            var patient = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
             _repository.Remove(patient);
             await _unitOfWork.SaveChangesAsync(cancellationToken);

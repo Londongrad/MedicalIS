@@ -1,17 +1,10 @@
 ﻿#region [ Usings ]
 
 using MediatR;
-using MedicalIS.Application.Commands.Doctors.ChangeDoctorSpecialty;
-using MedicalIS.Application.Commands.Doctors.CreateDoctor;
-using MedicalIS.Application.Commands.Doctors.DeleteDoctor;
-using MedicalIS.Application.Commands.Doctors.UpdateDoctorPhone;
 using MedicalIS.Application.Commands.Patients.CreatePatient;
 using MedicalIS.Application.Commands.Patients.DeletePatient;
 using MedicalIS.Application.Commands.Patients.UpdatePatientPhone;
 using MedicalIS.Application.DTOs;
-using MedicalIS.Application.Queries.Doctors.GetAllDoctors;
-using MedicalIS.Application.Queries.Doctors.GetDoctorById;
-using MedicalIS.Application.Queries.Doctors.GetDoctorsBySpecialty;
 using MedicalIS.Application.Queries.Patients.GetAllPatients;
 using MedicalIS.Application.Queries.Patients.GetPatientById;
 using Microsoft.AspNetCore.Mvc;

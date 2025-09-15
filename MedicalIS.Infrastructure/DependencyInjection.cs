@@ -9,6 +9,7 @@ namespace MedicalIS.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddScoped<IDoctorRepository, DoctorRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;

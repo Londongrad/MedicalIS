@@ -1,7 +1,5 @@
 ﻿using MediatR;
-using MedicalIS.Application.Exceptions;
 using MedicalIS.Application.Interfaces;
-using MedicalIS.Domain.Entities;
 
 namespace MedicalIS.Application.Commands.Patients.UpdatePatientPhone
 {
@@ -13,7 +11,7 @@ namespace MedicalIS.Application.Commands.Patients.UpdatePatientPhone
 
         public async Task<Unit> Handle(UpdatePatientPhoneCommand request, CancellationToken cancellationToken)
         {
-            var patient = await _repository.GetByIdAsync(request.Id, cancellationToken) ?? throw new NotFoundException(nameof(Patient), request.Id);
+            var patient = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
             patient.ChangePhone(request.NewPhone);
 

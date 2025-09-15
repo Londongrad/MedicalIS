@@ -4,7 +4,8 @@ using MedicalIS.Application.Interfaces;
 
 namespace MedicalIS.Application.Queries.Doctors.GetDoctorById
 {
-    public class GetDoctorByIdQueryHandler(IDoctorRepository repository) : IRequestHandler<GetDoctorByIdQuery, DoctorDTO>
+    public class GetDoctorByIdQueryHandler(IDoctorRepository repository) 
+        : IRequestHandler<GetDoctorByIdQuery, DoctorDTO>
     {
         private readonly IDoctorRepository _repository = repository;
 

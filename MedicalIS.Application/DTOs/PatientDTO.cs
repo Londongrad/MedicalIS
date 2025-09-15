@@ -3,7 +3,7 @@
     public record PatientDTO(
         Guid Id,
         string FullName,
-        DateTime DateOfBirth,
+        DateOnly DateOfBirth,
         string Phone,
         string Gender,
         string Address
