@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using MedicalIS.Application.DTOs.Doctor;
+using MedicalIS.Application.DTOs;
 using MedicalIS.Application.Interfaces;
 
 namespace MedicalIS.Application.Queries.Doctors.GetAllDoctors

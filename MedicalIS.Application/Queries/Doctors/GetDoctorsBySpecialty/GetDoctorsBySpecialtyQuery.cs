@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using MedicalIS.Application.DTOs.Doctor;
+using MedicalIS.Application.DTOs;
 
 namespace MedicalIS.Application.Queries.Doctors.GetDoctorsBySpecialty
 {

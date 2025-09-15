@@ -1,4 +1,4 @@
-﻿namespace MedicalIS.Application.DTOs.Disease
+﻿namespace MedicalIS.Application.DTOs
 {
     public record DiseaseDTO(
         Guid Id,

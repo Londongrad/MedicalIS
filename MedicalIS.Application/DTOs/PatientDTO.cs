@@ -1,6 +1,6 @@
-﻿namespace MedicalIS.Application.DTOs.Patient
+﻿namespace MedicalIS.Application.DTOs
 {
-    public record PatientDto(
+    public record PatientDTO(
         Guid Id,
         string FullName,
         DateTime DateOfBirth,

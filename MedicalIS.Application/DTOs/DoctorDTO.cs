@@ -1,6 +1,7 @@
-﻿namespace MedicalIS.Application.DTOs.Doctor
+﻿namespace MedicalIS.Application.DTOs
 {
-    public record CreateDoctorDTO(
+    public record DoctorDTO(
+        Guid Id,
         string FullName,
         string PhoneNumber,
         string Scpecialty

@@ -1,6 +1,5 @@
 ﻿using MedicalIS.Domain.Common;
 using MedicalIS.Domain.Enums;
-using System.Numerics;
 
 namespace MedicalIS.Domain.Entities
 {
@@ -15,10 +14,10 @@ namespace MedicalIS.Domain.Entities
 
         /// <summary>Адрес можно было бы сделать отдельным классом. Оставил для простоты.</summary>
         public string Address { get; private set; } = null!;
-        public Guid DoctorId { get; private set; }
+        public Guid? DoctorId { get; private set; }
 
         /// <summary>Навигационное свойство</summary>
-        public Doctor Doctor { get; private set; } = null!;
+        public Doctor? Doctor { get; private set; }
 
         /// <summary>Навигационное свойство</summary>
         public ICollection<PatientDisease> PatientDiseases { get; private set; } = [];

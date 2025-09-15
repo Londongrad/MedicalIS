@@ -15,9 +15,11 @@ namespace MedicalIS.Infrastructure.Configurations
                 .HasMaxLength(200);
 
             builder.Property(p => p.PhoneNumber)
+                .IsRequired()
                 .HasMaxLength(20);
 
             builder.Property(p => p.Address)
+                .IsRequired()
                 .HasMaxLength(300);
 
             builder.Property(p => p.Gender)
@@ -26,7 +28,7 @@ namespace MedicalIS.Infrastructure.Configurations
             builder.HasOne<Doctor>()
                 .WithMany()
                 .HasForeignKey(p => p.DoctorId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

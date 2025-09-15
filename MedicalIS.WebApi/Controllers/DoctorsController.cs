@@ -3,7 +3,7 @@ using MedicalIS.Application.Commands.Doctors.ChangeDoctorSpecialty;
 using MedicalIS.Application.Commands.Doctors.CreateDoctor;
 using MedicalIS.Application.Commands.Doctors.DeleteDoctor;
 using MedicalIS.Application.Commands.Doctors.UpdateDoctorPhone;
-using MedicalIS.Application.DTOs.Doctor;
+using MedicalIS.Application.DTOs;
 using MedicalIS.Application.Queries.Doctors.GetAllDoctors;
 using MedicalIS.Application.Queries.Doctors.GetDoctorById;
 using MedicalIS.Application.Queries.Doctors.GetDoctorsBySpecialty;
