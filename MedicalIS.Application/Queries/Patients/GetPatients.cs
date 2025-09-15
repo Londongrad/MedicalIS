@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using MedicalIS.Application.DTOs.Patients;
+using MedicalIS.Application.DTOs.Patient;
 
 namespace MedicalIS.Application.Queries.Patients
 {

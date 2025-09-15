@@ -1,4 +1,4 @@
-﻿namespace MedicalIS.Application.DTOs.Doctors
+﻿namespace MedicalIS.Application.DTOs.Doctor
 {
     public record CreateDoctorDTO(
         string FullName,
