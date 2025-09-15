@@ -19,7 +19,8 @@ namespace MedicalIS.Application.Queries.Patients.GetPatientById
                 patient.DateOfBirth,
                 patient.PhoneNumber,
                 patient.Gender.ToString(),
-                patient.Address
+                patient.Address,
+                patient.DoctorId
             );
         }
     }

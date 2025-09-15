@@ -13,7 +13,15 @@ namespace MedicalIS.Application.Queries.Patients.GetAllPatients
             var patients = await _repository.GetAllAsync(cancellationToken);
 
             return patients
-                .Select(p => new PatientDTO(p.Id, p.FullName, p.DateOfBirth, p.PhoneNumber, p.Gender.ToString(), p.Address))
+                .Select(p => new PatientDTO(
+                    p.Id, 
+                    p.FullName, 
+                    p.DateOfBirth, 
+                    p.PhoneNumber, 
+                    p.Gender.ToString(), 
+                    p.Address, 
+                    p.DoctorId)
+                )
                 .ToList();
         }
     }

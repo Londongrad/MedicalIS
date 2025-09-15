@@ -6,6 +6,7 @@
         DateOnly DateOfBirth,
         string Phone,
         string Gender,
-        string Address
+        string Address,
+        Guid? DoctorId
     );
 }
