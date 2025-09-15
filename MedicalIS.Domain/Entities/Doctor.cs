@@ -10,6 +10,7 @@ namespace MedicalIS.Domain.Entities
         public string FullName { get; private set; } = null!;
         public string PhoneNumber { get; private set; } = null!;
         public Specialty Specialty { get; private set; }
+        public ICollection<Patient> Patients { get; set; } = [];
 
         #endregion [ Properties ]
 

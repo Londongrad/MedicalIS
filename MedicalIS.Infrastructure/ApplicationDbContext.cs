@@ -8,6 +8,7 @@ namespace MedicalIS.Infrastructure
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Disease> Diseases { get; set; }
+        public DbSet<PatientDisease> PatientDiseases {  get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
