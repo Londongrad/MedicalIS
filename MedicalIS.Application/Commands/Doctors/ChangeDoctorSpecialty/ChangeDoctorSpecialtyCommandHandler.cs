@@ -1,12 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using MedicalIS.Application.Exceptions;
+using MedicalIS.Application.Interfaces;
+using MedicalIS.Domain.Entities;
+using MedicalIS.Domain.Enums;
 
 namespace MedicalIS.Application.Commands.Doctors.ChangeDoctorSpecialty
 {
-    internal class ChangeDoctorSpecialtyCommandHandler
+    public class ChangeDoctorSpecialtyCommandHandler(IDoctorRepository repository, IUnitOfWork unitOfWork) 
+        : IRequestHandler<ChangeDoctorSpecialtyCommand, Unit>
     {
+        public async Task<Unit> Handle(ChangeDoctorSpecialtyCommand request, CancellationToken cancellationToken)
+        {
+            var doctor = await repository.GetByIdAsync(request.Id, cancellationToken) ?? throw new NotFoundException(nameof(Doctor), request.Id);
+
+            if (!Enum.TryParse<Specialty>(request.NewSpecialty, true, out var parsedSpecialty))
+                throw new ArgumentException($"Invalid specialty: {request.NewSpecialty}");
+
+            doctor.ChangeSpecialty(parsedSpecialty);
+            repository.Update(doctor);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
+            return Unit.Value;
+        }
     }
 }

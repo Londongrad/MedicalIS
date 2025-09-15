@@ -4,7 +4,7 @@ namespace MedicalIS.Application.Interfaces
 {
     public interface IPatientRepository
     {
-        Task<Patient?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+        Task<Patient> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
         Task<IReadOnlyList<Patient>> GetAllAsync(CancellationToken cancellationToken = default);
         Task AddAsync(Patient patient, CancellationToken cancellationToken = default);
         void Update(Patient patient);
