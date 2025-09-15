@@ -1,5 +1,6 @@
 ﻿using MedicalIS.Domain.Common;
 using MedicalIS.Domain.Enums;
+using System.Numerics;
 
 namespace MedicalIS.Domain.Entities
 {
@@ -28,7 +29,7 @@ namespace MedicalIS.Domain.Entities
 
         private Patient() { } // EF Core
 
-        public Patient(Guid id, string fullName, DateTime dateOfBirth, string phone, Gender gender, string address, Guid doctorId)
+        public Patient(Guid id, string fullName, DateTime dateOfBirth, string phone, Gender gender, string address)
             : base(id)
         {
             GuardHelper.AgainstEmptyGuid(id, nameof(id));
@@ -37,11 +38,12 @@ namespace MedicalIS.Domain.Entities
             GuardHelper.AgainstNullOrEmpty(phone, nameof(phone));
             GuardHelper.AgainstInvalidEnum(gender, nameof(gender));
             GuardHelper.AgainstNullOrEmpty(address, nameof(address));
-            GuardHelper.AgainstEmptyGuid(doctorId, nameof(doctorId));
 
             FullName = fullName;
             DateOfBirth = dateOfBirth;
             PhoneNumber = phone;
+            Gender = gender;
+            Address = address;
         }
 
         #endregion [ Ctors ]
@@ -50,7 +52,17 @@ namespace MedicalIS.Domain.Entities
 
         public void ChangePhone(string newPhone)
         {
+            GuardHelper.AgainstNullOrEmpty(newPhone, nameof(newPhone));
+
             PhoneNumber = newPhone;
+            UpdateTimestamp();
+        }
+
+        public void AssignDoctor(Guid doctorId)
+        {
+            GuardHelper.AgainstEmptyGuid(doctorId, nameof(doctorId));
+
+            DoctorId = doctorId;
             UpdateTimestamp();
         }
 
