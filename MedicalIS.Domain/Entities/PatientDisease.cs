@@ -1,4 +1,6 @@
-﻿namespace MedicalIS.Domain.Entities
+﻿using MedicalIS.Domain.Common;
+
+namespace MedicalIS.Domain.Entities
 {
     /// <summary>Связка многие-ко-многим</summary>
     public class PatientDisease
@@ -9,21 +11,22 @@
         public Patient Patient { get; private set; } = null!;
 
         public Guid DiseaseId { get; private set; }
-
-        /// <summary>Навигационное свойство</summary>
         public Disease Disease { get; private set; } = null!;
 
-        /// <summary>Дата постановки диагноза</summary>
         public DateTime DiagnosedAt { get; private set; }
 
         #endregion [ Properties ]
 
         #region [ Ctors ]
 
-        protected PatientDisease() { } // EF Core
+        private PatientDisease() { } // EF Core
 
         public PatientDisease(Guid patientId, Guid diseaseId, DateTime diagnosedAt)
         {
+            GuardHelper.AgainstInvalidDate(diagnosedAt, nameof(diagnosedAt));
+            GuardHelper.AgainstEmptyGuid(patientId, nameof(patientId));
+            GuardHelper.AgainstEmptyGuid(diseaseId, nameof(diseaseId));
+
             PatientId = patientId;
             DiseaseId = diseaseId;
             DiagnosedAt = diagnosedAt;

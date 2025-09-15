@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using MedicalIS.Application.DTOs;
+using MedicalIS.Application.DTOs.Patients;
 
 namespace MedicalIS.Application.Queries.Patients
 {
-    public record GetPatientsQuery() : IRequest<List<PatientDTO>>;
+    public record GetPatientsQuery() : IRequest<List<PatientDto>>;
 }

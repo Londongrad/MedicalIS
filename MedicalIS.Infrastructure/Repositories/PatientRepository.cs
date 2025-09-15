@@ -1,33 +1,49 @@
 ﻿using MedicalIS.Application.Interfaces;
 using MedicalIS.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace MedicalIS.Infrastructure.Repositories
 {
-    public class PatientRepository : IPatientRepository
+    public class PatientRepository(ApplicationDbContext context) : IPatientRepository
     {
-        public Task AddAsync(Patient patient, CancellationToken cancellationToken = default)
+        private readonly ApplicationDbContext _context = context;
+
+        public async Task AddAsync(Patient patient, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            _context.Patients.Add(patient);
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var patient = await _context.Patients.FindAsync([id], cancellationToken);
+            if (patient != null)
+            {
+                _context.Patients.Remove(patient);
+                await _context.SaveChangesAsync(cancellationToken);
+            }
+
+            //await _context.Patients
+            //  .Where(p => p.Id == id)
+            //  .ExecuteDeleteAsync(cancellationToken);
         }
 
-        public Task<IReadOnlyList<Patient>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<IReadOnlyList<Patient>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return await _context.Patients.AsNoTracking().ToListAsync(cancellationToken);
         }
 
-        public Task<Patient?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<Patient?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return await _context.Patients
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
         }
 
-        public Task UpdateAsync(Patient patient, CancellationToken cancellationToken = default)
+        public async Task UpdateAsync(Patient patient, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            _context.Patients.Update(patient);
+            await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }
