@@ -1,4 +1,6 @@
-﻿namespace MedicalIS.WebApi.Middleware
+﻿using MedicalIS.Application.Exceptions;
+
+namespace MedicalIS.WebApi.Middleware
 {
     public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
     {
@@ -16,6 +18,16 @@
                 _logger.LogWarning(ex, "Validation error");
 
                 context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                await context.Response.WriteAsJsonAsync(new
+                {
+                    error = ex.Message
+                });
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogWarning(ex, "Not found error");
+
+                context.Response.StatusCode = StatusCodes.Status404NotFound;
                 await context.Response.WriteAsJsonAsync(new
                 {
                     error = ex.Message

@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿#region [ Usings ]
+
+using MediatR;
 using MedicalIS.Application.Commands.Doctors.ChangeDoctorSpecialty;
 using MedicalIS.Application.Commands.Doctors.CreateDoctor;
 using MedicalIS.Application.Commands.Doctors.DeleteDoctor;
@@ -8,6 +10,8 @@ using MedicalIS.Application.Queries.Doctors.GetAllDoctors;
 using MedicalIS.Application.Queries.Doctors.GetDoctorById;
 using MedicalIS.Application.Queries.Doctors.GetDoctorsBySpecialty;
 using Microsoft.AspNetCore.Mvc;
+
+#endregion [ Usings ]
 
 namespace MedicalIS.WebApi.Controllers
 {

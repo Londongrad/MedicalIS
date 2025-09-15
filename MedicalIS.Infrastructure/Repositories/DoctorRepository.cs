@@ -11,15 +11,7 @@ namespace MedicalIS.Infrastructure.Repositories
 
         public async Task AddAsync(Doctor doctor, CancellationToken cancellationToken = default)
         {
-            _context.Doctors.Add(doctor);
-            await _context.SaveChangesAsync(cancellationToken);
-        }
-
-        public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
-        {
-            await _context.Doctors
-                .Where(d => d.Id == id)
-                .ExecuteDeleteAsync(cancellationToken);
+            await _context.Doctors.AddAsync(doctor, cancellationToken);
         }
 
         public async Task<IReadOnlyList<Doctor>> GetAllAsync(CancellationToken cancellationToken = default)
@@ -44,10 +36,14 @@ namespace MedicalIS.Infrastructure.Repositories
                 .ToListAsync(cancellationToken);
         }
 
-        public async Task UpdateAsync(Doctor doctor, CancellationToken cancellationToken = default)
+        public void Update(Doctor doctor)
         {
             _context.Doctors.Update(doctor);
-            await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public void Remove(Doctor doctor)
+        {
+            _context.Doctors.Remove(doctor);
         }
     }
 }
