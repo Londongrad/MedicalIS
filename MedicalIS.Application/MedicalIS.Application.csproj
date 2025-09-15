@@ -11,11 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Doctors\" />
-    <Folder Include="Queries\Doctors\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MediatR" Version="13.0.0" />
   </ItemGroup>
 
