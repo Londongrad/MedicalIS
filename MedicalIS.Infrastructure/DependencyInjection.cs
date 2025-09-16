@@ -15,6 +15,7 @@ namespace MedicalIS.Infrastructure
 
             services.AddScoped<IDoctorRepository, DoctorRepository>();
             services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped<IDiseaseRepository, DiseaseRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;

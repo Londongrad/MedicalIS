@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Commands\Diseases\" />
-    <Folder Include="Queries\Diseases\" />
   </ItemGroup>
 
 </Project>

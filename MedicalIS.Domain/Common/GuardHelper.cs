@@ -26,6 +26,12 @@
                 throw new ArgumentException($"{argumentName} cannot be empty Guid", argumentName);
         }
 
+        public static void AgainstNull(object obj, string argumentName)
+        {
+            if (obj is null)
+                throw new ArgumentException($"{argumentName} cannot be null", argumentName);
+        }
+
         public static void AgainstInvalidEnum<TEnum>(TEnum value, string argumentName) where TEnum : struct, Enum
         {
             if (!Enum.IsDefined(value))

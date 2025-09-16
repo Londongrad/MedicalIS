@@ -1,6 +1,7 @@
 ﻿#region [ Usings ]
 
 using MediatR;
+using MedicalIS.Application.Commands.Patients.AssignDisease;
 using MedicalIS.Application.Commands.Patients.AssignDoctor;
 using MedicalIS.Application.Commands.Patients.CreatePatient;
 using MedicalIS.Application.Commands.Patients.DeletePatient;
@@ -56,10 +57,17 @@ namespace MedicalIS.WebApi.Controllers
             return NoContent();
         }
 
-        [HttpPut("{patientId:guid}/doctor")]
+        [HttpPut("{patientId:guid}/assign-doctor")]
         public async Task<IActionResult> AssignDoctor(Guid patientId, [FromBody] Guid doctorId, CancellationToken cancellationToken)
         {
             await _mediator.Send(new AssignDoctorCommand(patientId, doctorId), cancellationToken);
+            return NoContent();
+        }
+
+        [HttpPost("{patientId}/assign-disease")]
+        public async Task<IActionResult> AssignDisease(Guid patientId, [FromBody] AssignDiseaseDTO dto, CancellationToken cancellationToken)
+        {
+            await _mediator.Send(new AssignDiseaseCommand(patientId, dto.DiseaseId, dto.DiagnosedAt), cancellationToken);
             return NoContent();
         }
     }

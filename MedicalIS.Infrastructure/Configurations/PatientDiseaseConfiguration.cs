@@ -11,7 +11,7 @@ namespace MedicalIS.Infrastructure.Configurations
             builder.HasKey(pd => new { pd.PatientId, pd.DiseaseId });
 
             builder.HasOne(pd => pd.Patient)
-                .WithMany(p => p.PatientDiseases)
+                .WithMany(p => p.Diseases)
                 .HasForeignKey(pd => pd.PatientId)
                 .OnDelete(DeleteBehavior.Cascade);
 

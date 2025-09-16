@@ -2,9 +2,10 @@
 
 namespace MedicalIS.Application.Interfaces
 {
+    /// <summary>Определяет контракт репозитория для работы с сущностями <see cref="Patient"/>.</summary>
     public interface IPatientRepository
     {
-        /// <summary>Получает пациента по его идентификатору.</summary>
+        /// <summary>Получает сущность <see cref="Patient"/> по её идентификатору.</summary>
         /// <returns>Экземпляр <see cref="Patient"/>.</returns>
         /// <exception cref="NotFoundException">
         /// Выбрасывается, если пациент с указанным <paramref name="id"/> не найден.

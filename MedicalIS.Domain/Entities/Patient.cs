@@ -5,6 +5,12 @@ namespace MedicalIS.Domain.Entities
 {
     public class Patient : EntityBase
     {
+        #region [ Fields ]
+
+        private readonly List<PatientDisease> _diseases = [];
+
+        #endregion [ Fields ]
+
         #region [ Properties ]
 
         public string FullName { get; private set; } = null!;
@@ -20,7 +26,7 @@ namespace MedicalIS.Domain.Entities
         public Doctor? Doctor { get; private set; }
 
         /// <summary>Навигационное свойство</summary>
-        public ICollection<PatientDisease> PatientDiseases { get; private set; } = [];
+        public IReadOnlyCollection<PatientDisease> Diseases => _diseases.AsReadOnly();
 
         #endregion [ Properties ]
 
@@ -65,6 +71,18 @@ namespace MedicalIS.Domain.Entities
             UpdateTimestamp();
         }
 
-        #endregion [ Properties ]
+        public void AddDisease(Disease disease, DateTime diagnosedAt)
+        {
+            GuardHelper.AgainstNull(disease, nameof(disease));
+            GuardHelper.AgainstInvalidDate(diagnosedAt, nameof(diagnosedAt));
+
+            if (_diseases.Any(pd => pd.DiseaseId == disease.Id))
+                throw new ArgumentException("This patient already has this disease.");
+
+            _diseases.Add(new PatientDisease(Id, disease.Id, diagnosedAt));
+            UpdateTimestamp();
+        }
+
+        #endregion [ Methods ]
     }
 }

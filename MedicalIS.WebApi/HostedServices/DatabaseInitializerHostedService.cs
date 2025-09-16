@@ -12,6 +12,7 @@ namespace MedicalIS.WebApi.HostedServices
             using var scope = _serviceProvider.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
+            db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
             DatabaseSeeder.Seed(db);
 
