@@ -1,7 +1,7 @@
 ﻿using MedicalIS.Domain.Entities;
 using MedicalIS.Domain.Enums;
 
-namespace MedicalIS.Infrastructure
+namespace MedicalIS.Infrastructure.Seed
 {
     public static class DatabaseSeeder
     {
