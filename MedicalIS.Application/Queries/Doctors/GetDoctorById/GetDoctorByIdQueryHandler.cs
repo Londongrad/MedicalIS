@@ -1,16 +1,23 @@
 ﻿using MediatR;
 using MedicalIS.Application.DTOs;
 using MedicalIS.Application.Interfaces;
+using MedicalIS.Application.Queries.Doctors.GetAllDoctors;
+using Microsoft.Extensions.Logging;
 
 namespace MedicalIS.Application.Queries.Doctors.GetDoctorById
 {
-    public class GetDoctorByIdQueryHandler(IDoctorRepository repository) 
+    public class GetDoctorByIdQueryHandler(IDoctorRepository repository, ILogger<GetAllDoctorsQueryHandler> logger)
         : IRequestHandler<GetDoctorByIdQuery, DoctorDTO>
     {
         private readonly IDoctorRepository _repository = repository;
+        private readonly ILogger<GetAllDoctorsQueryHandler> _logger = logger;
 
         public async Task<DoctorDTO> Handle(GetDoctorByIdQuery request, CancellationToken cancellationToken)
         {
+            _logger.LogInformation(
+                "Выполняется запрос {QueryName} для доктора с Id = {DoctorId}",
+                nameof(GetDoctorByIdQuery), request.Id);
+
             var doctor = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
             return new DoctorDTO(
