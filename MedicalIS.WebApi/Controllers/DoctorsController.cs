@@ -67,7 +67,7 @@ namespace MedicalIS.WebApi.Controllers
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
         {
-            await _mediator.Send(new UpdateDoctorPhone(id), cancellationToken);
+            await _mediator.Send(new DeleteDoctorCommand(id), cancellationToken);
             return NoContent();
         }
     }
