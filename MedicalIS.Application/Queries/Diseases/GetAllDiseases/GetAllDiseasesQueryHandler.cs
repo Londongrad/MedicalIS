@@ -13,11 +13,14 @@ namespace MedicalIS.Application.Queries.Diseases.GetAllDiseases
 
         public async Task<IReadOnlyList<DiseaseDTO>> Handle(GetAllDiseasesQuery request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Выполняется запрос {QueryName}", nameof(GetAllDiseasesQuery));
+            _logger.LogInformation(
+                "Выполняется запрос {QueryName}", 
+                nameof(GetAllDiseasesQuery));
 
             var diseases = await _repository.GetAllAsync(cancellationToken);
 
-            _logger.LogDebug("Запрос {QueryName} успешно выполнен. Получено {Count} заболеваний.",
+            _logger.LogDebug(
+                "Запрос {QueryName} успешно выполнен. Получено {Count} заболеваний.",
                 nameof(GetAllDiseasesQuery), diseases.Count);
 
             return diseases.Select(d =>

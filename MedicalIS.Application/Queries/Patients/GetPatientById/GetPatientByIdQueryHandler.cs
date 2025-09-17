@@ -13,7 +13,8 @@ namespace MedicalIS.Application.Queries.Patients.GetPatientById
 
         public async Task<PatientDTO> Handle(GetPatientByIdQuery request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Выполнение запроса {QueryName} для пациента с Id = {Id}", 
+            _logger.LogInformation(
+                "Выполнение запроса {QueryName} для пациента с Id = {Id}", 
                 nameof(GetPatientByIdQuery), request.Id);
 
             var patient = await _repository.GetByIdAsync(request.Id, cancellationToken);

@@ -15,7 +15,8 @@ namespace MedicalIS.Application.Queries.Doctors.GetDoctorsBySpecialty
 
         public async Task<IReadOnlyList<DoctorDTO>> Handle(GetDoctorsBySpecialtyQuery request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Выполнение запроса {QueryName} с параметром Specialty: {Specialty}",
+            _logger.LogInformation(
+                "Выполнение запроса {QueryName} с параметром Specialty: {Specialty}",
                 nameof(GetDoctorsBySpecialtyQuery), request.Specialty);
 
             if (!Enum.TryParse<Specialty>(request.Specialty, true, out var parsedSpecialty))
@@ -23,7 +24,8 @@ namespace MedicalIS.Application.Queries.Doctors.GetDoctorsBySpecialty
 
             var doctors = await _repository.GetBySpecialtyAsync(parsedSpecialty, cancellationToken);
 
-            _logger.LogDebug("Запрос {QueryName} выполнен. Получено {Count} докторов со специальностью {Specialty}.",
+            _logger.LogDebug(
+                "Запрос {QueryName} выполнен. Получено {Count} докторов со специальностью {Specialty}.",
                 nameof(GetDoctorsBySpecialtyQuery), doctors.Count, request.Specialty);
 
             return doctors.Select(doctor => new DoctorDTO(

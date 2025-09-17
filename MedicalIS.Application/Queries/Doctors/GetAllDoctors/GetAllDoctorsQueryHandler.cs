@@ -13,11 +13,14 @@ namespace MedicalIS.Application.Queries.Doctors.GetAllDoctors
 
         public async Task<IReadOnlyList<DoctorDTO>> Handle(GetAllDoctorsQuery request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Выполняется запрос {QueryName}", nameof(GetAllDoctorsQuery));
+            _logger.LogInformation(
+                "Выполняется запрос {QueryName}", 
+                nameof(GetAllDoctorsQuery));
 
             var doctors = await _repository.GetAllAsync(cancellationToken);
 
-            _logger.LogDebug("Запрос {QueryName} успешно выполнен. Получено {Count} докторов.",
+            _logger.LogDebug(
+                "Запрос {QueryName} успешно выполнен. Получено {Count} докторов.",
                 nameof(GetAllDoctorsQuery), doctors.Count);
 
             return doctors
