@@ -5,12 +5,18 @@ namespace MedicalIS.Domain.Entities
 {
     public class Doctor : EntityBase
     {
+        #region [ Fields ]
+
+        private readonly List<Patient> _patients = new();
+
+        #endregion [ Fields ]
+
         #region [ Properties ]
 
         public string FullName { get; private set; } = null!;
         public string PhoneNumber { get; private set; } = null!;
         public Specialty Specialty { get; private set; }
-        public ICollection<Patient> Patients { get; set; } = [];
+        public IReadOnlyCollection<Patient> Patients => _patients;
 
         #endregion [ Properties ]
 

@@ -25,8 +25,8 @@ namespace MedicalIS.Infrastructure.Configurations
             builder.Property(p => p.Gender)
                 .IsRequired();
 
-            builder.HasOne<Doctor>()
-                .WithMany()
+            builder.HasOne(p => p.Doctor)
+                .WithMany(d => d.Patients)
                 .HasForeignKey(p => p.DoctorId)
                 .OnDelete(DeleteBehavior.SetNull);
         }

@@ -21,6 +21,9 @@ namespace MedicalIS.Infrastructure.Repositories
         {
             return await _context.Doctors
                 .AsNoTracking()
+                .Include(d => d.Patients)
+                    .ThenInclude(p => p.Diseases)
+                        .ThenInclude(pd => pd.Disease)
                 .ToListAsync(cancellationToken);
         }
 
@@ -28,6 +31,9 @@ namespace MedicalIS.Infrastructure.Repositories
         public async Task<Doctor> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await _context.Doctors
+                .Include(d => d.Patients)
+                    .ThenInclude(p => p.Diseases)
+                        .ThenInclude(pd => pd.Disease)
                 .FirstOrDefaultAsync(d => d.Id == id, cancellationToken)
                 ?? throw new NotFoundException(nameof(Doctor), id);
         }

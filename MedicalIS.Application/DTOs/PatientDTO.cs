@@ -7,6 +7,7 @@
         string Phone,
         string Gender,
         string Address,
-        Guid? DoctorId
+        Guid? DoctorId,
+        IReadOnlyList<PatientDiseaseDTO> Diseases
     );
 }

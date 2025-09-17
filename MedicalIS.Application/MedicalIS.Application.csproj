@@ -7,15 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Commands\Diseases\**" />
+    <EmbeddedResource Remove="Commands\Diseases\**" />
+    <None Remove="Commands\Diseases\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MedicalIS.Domain\MedicalIS.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="13.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Commands\Diseases\" />
   </ItemGroup>
 
 </Project>

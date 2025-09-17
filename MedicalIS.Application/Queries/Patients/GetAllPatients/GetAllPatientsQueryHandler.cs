@@ -14,14 +14,20 @@ namespace MedicalIS.Application.Queries.Patients.GetAllPatients
 
             return patients
                 .Select(p => new PatientDTO(
-                    p.Id, 
-                    p.FullName, 
-                    p.DateOfBirth, 
-                    p.PhoneNumber, 
-                    p.Gender.ToString(), 
-                    p.Address, 
-                    p.DoctorId)
-                )
+                    p.Id,
+                    p.FullName,
+                    p.DateOfBirth,
+                    p.PhoneNumber,
+                    p.Gender.ToString(),
+                    p.Address,
+                    p.DoctorId,
+                    p.Diseases.Select(pd => new PatientDiseaseDTO(
+                        pd.DiseaseId,
+                        pd.Disease.Name,
+                        pd.Disease.Description,
+                        pd.DiagnosedAt)
+                    ).ToList()
+                ))
                 .ToList();
         }
     }

@@ -18,13 +18,19 @@ namespace MedicalIS.Infrastructure.Repositories
         /// <inheritdoc />
         public async Task<IReadOnlyList<Patient>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            return await _context.Patients.AsNoTracking().ToListAsync(cancellationToken);
+            return await _context.Patients
+                .Include(p => p.Diseases)
+                .ThenInclude(pt => pt.Disease)
+                .AsNoTracking()
+                .ToListAsync(cancellationToken);
         }
 
         /// <inheritdoc />
         public async Task<Patient> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await _context.Patients
+                .Include(p => p.Diseases)
+                .ThenInclude(pt => pt.Disease)
                 .FirstOrDefaultAsync(p => p.Id == id, cancellationToken)
                 ?? throw new NotFoundException(nameof(Patient), id);
         }

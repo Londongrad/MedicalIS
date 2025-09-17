@@ -20,7 +20,13 @@ namespace MedicalIS.Application.Queries.Patients.GetPatientById
                 patient.PhoneNumber,
                 patient.Gender.ToString(),
                 patient.Address,
-                patient.DoctorId
+                patient.DoctorId,
+                patient.Diseases.Select(pd => new PatientDiseaseDTO(
+                        pd.DiseaseId,
+                        pd.Disease.Name,
+                        pd.Disease.Description,
+                        pd.DiagnosedAt)
+                    ).ToList()
             );
         }
     }

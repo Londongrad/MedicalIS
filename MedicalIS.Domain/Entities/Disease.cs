@@ -4,13 +4,19 @@ namespace MedicalIS.Domain.Entities
 {
     public class Disease : EntityBase
     {
+        #region [ Fields ]
+
+        private readonly List<PatientDisease> _patientDiseases = new();
+
+        #endregion [ Fields ]
+
         #region [ Properties ]
 
         public string Name { get; private set; } = null!;
         public string? Description { get; private set; }
 
         /// <summary>Навигационное свойство</summary>
-        public ICollection<PatientDisease> PatientDiseases { get; private set; } = [];
+        public IReadOnlyCollection<PatientDisease> PatientDiseases => _patientDiseases;
 
         #endregion [ Properties ]
 

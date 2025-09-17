@@ -4,6 +4,7 @@
         Guid Id,
         string FullName,
         string PhoneNumber,
-        string Scpecialty
+        string Scpecialty,
+        IReadOnlyList<PatientDTO> Patients
     );
 }

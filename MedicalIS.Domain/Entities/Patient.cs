@@ -26,7 +26,7 @@ namespace MedicalIS.Domain.Entities
         public Doctor? Doctor { get; private set; }
 
         /// <summary>Навигационное свойство</summary>
-        public IReadOnlyCollection<PatientDisease> Diseases => _diseases.AsReadOnly();
+        public IReadOnlyCollection<PatientDisease> Diseases => _diseases;
 
         #endregion [ Properties ]
 
