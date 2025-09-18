@@ -1,9 +1,11 @@
-using MedicalIS.Application;
+﻿using MedicalIS.Application;
 using MedicalIS.Infrastructure;
 using MedicalIS.WebApi.HostedServices;
 using MedicalIS.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -12,21 +14,19 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(ApplicationAssemblyMarker).Assembly));
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddInfrastructure(builder);
 builder.Services.AddHostedService<DatabaseInitializerHostedService>();
 
 var app = builder.Build();
 
+app.MapDefaultEndpoints();
+
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseHttpsRedirection();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseAuthorization();
 app.MapControllers();
 

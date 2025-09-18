@@ -1,17 +1,15 @@
 ﻿using MedicalIS.Application.Interfaces;
 using MedicalIS.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace MedicalIS.Infrastructure
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IHostApplicationBuilder builder)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(configuration.GetConnectionString("SQLite")));
+            builder.AddSqliteDbContext<ApplicationDbContext>("sqlite");
 
             services.AddScoped<IDoctorRepository, DoctorRepository>();
             services.AddScoped<IPatientRepository, PatientRepository>();
