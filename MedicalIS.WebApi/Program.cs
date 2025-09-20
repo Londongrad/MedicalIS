@@ -5,8 +5,6 @@ using MedicalIS.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddServiceDefaults();
-
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -14,7 +12,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(ApplicationAssemblyMarker).Assembly));
-builder.Services.AddInfrastructure(builder);
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddHostedService<DatabaseInitializerHostedService>();
 
 var app = builder.Build();
