@@ -17,8 +17,6 @@ builder.Services.AddHostedService<DatabaseInitializerHostedService>();
 
 var app = builder.Build();
 
-app.MapDefaultEndpoints();
-
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
